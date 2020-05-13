@@ -13,3 +13,31 @@ cd .\scheme\lib\
 java -jar .\kawa.jar
 ```
 
+# Testing the equality
+
+## MyString
+
+MyString is an object with some variable inside. In java, MyString could be create by the following code
+
+```java
+class MyString {
+    private String someField;
+
+    public MyString(String someField) {
+        this.someField = someField;
+    }
+
+    public String getSomeField() {
+        return this.someField;
+    }
+}
+```
+
+To have the same "class" in Scheme
+
+```
+(define (MyString someField)
+  (let ((someField someField))
+  (define (getSomeField)
+    someField)))
+```

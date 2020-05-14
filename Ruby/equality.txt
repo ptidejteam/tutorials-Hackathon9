@@ -1,0 +1,81 @@
+Structural Equality(Reflexive Equality)
+Structural equality asks if two references are the same value.
+In order to compare things Ruby has a bunch of comparison operators.
+
+Example
+
+ 1 == 1 * 1 will return true,
+"A" == "A" also returns true because both strings have the same value.
+[1, 2] == [1, 2] will return true, 
+but [1, 2] == [2, 3] and [1, 2] == [2, 1] both will return false.
+
+  Integer and Floating Points 
+
+When comparing numbers of different types (e.g., integer and float), if their numeric value is the same, == will return true.
+2 == 2.0 # Output: => true
+
+Reference equality.
+ 
+Reference equality asks if the two objects being compared are the same object[1]. In other words, does the variable point at the same area of memory? 
+
+Object References 
+
+When we work with objects in Ruby, we are really working with object references[1]. It is not the object itself we manipulate but a reference to it.[*] When we assign a value to a variable, we are not copying an object “into” that variable; we are merely storing a reference to an object into that variable. 
+
+
+Example 
+Some code makes this clear:
+s = "Ruby" # Create a String object. Store a reference to it in s.
+t = s      # Copy the reference to t. s and t both refer to the same object.
+t[-1] = "" # Modify the object through the reference in t.
+print s    # Access the modified object through s. Prints "Rub". 
+t = "Java" # t now refers to a different object.
+print s,t  # Prints "RubJava".
+
+When you pass an object to a method in Ruby, it is an object reference that is passed to the method. It is not the object itself, and it is not a reference to the reference to the object. Another way to say this is that method arguments are passed by value rather than by reference, but that the values passed are object references.
+
+Case-equality operator
+Also known as triple equals [2].
+This operator does not test equality, but rather tests if the right operand has an IS A relationship with the left operand. As such, the popular name case equality operator is misleading.
+This  answer describes it thus: the best way to describe a === b is "if I have a drawer labeled a, does it make sense to put b in it?" In other words, does the set a include the member b?
+
+Examples [3][4]
+
+(1..5) === 3            # => true
+(1..5) === 6            # => false
+
+Integer === 42          # => true
+Integer === 'fourtytwo' # => false
+
+/ell/ === 'Hello'       # => true
+/ell/ === 'Foobar'      # => false
+So, for example, Module#=== tests whether b.is_a?(a). If you have Integer === 2 , means Integer module has number 2?
+
+Program
+def check_num(a, b, c)
+    if a==b && b==c
+        return 0
+    elsif a==b
+        return c
+    elsif a==c
+        return b
+    elsif b==c
+        return a
+    else
+        return a+b+c
+    end
+end
+//Check Structural equality of integer w.r.t floating point
+print check_num(5.0, 5, 5.0),"\n"
+//Check Structural equality of Character  answer will be letter B
+print check_num(“A”, “A”, “B”),"\n"
+print check_num(5, 7, 5),"\n"
+print check_num(7, 5, 5),"\n"
+print check_num(1, 2, 3),"\n"
+
+Source :
+https://www.oreilly.com/library/view/the-ruby-programming
+https://github.com/rubocop-hq/ruby-style-guide
+https://riptutorial.com/ruby/example/14092/case-equality-operator
+https://medium.com/@khalidh64/difference-between-eql-equal-in-ruby-2ffa7f073532
+

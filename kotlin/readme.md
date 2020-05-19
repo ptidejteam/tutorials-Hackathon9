@@ -1,4 +1,4 @@
-#Kotling equals analisys
+#Kotlin equals analysis
 
 ##Copy and paste the code below to:
 [Heading link](https://www.jdoodle.com/compile-kotlin-online/ "https://www.jdoodle.com/compile-kotlin-online/")
